@@ -8,7 +8,6 @@ class LightButton extends React.Component<any, any> {
 
 
     private handleSubmit = async (btnState: string) => {
-        console.log("lightState changed!");
         await this.setState({ buttonState: btnState });
         this.props.getLightProp(this.state.buttonState);
     }
