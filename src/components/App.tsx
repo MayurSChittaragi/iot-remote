@@ -1,7 +1,7 @@
 import React from 'react';
 import LightButton from './LightButton';
-import { writeThingspeak, readThingspeak } from '../api/thingspeak';
-
+import { writeThingspeak } from '../api/thingspeak';
+import FireAlarm from './FireAlarm';
 
 function App() {
   //light: "ON" | "OFF" | "AUTO" field1
@@ -35,6 +35,7 @@ function App() {
   return (
     <div className="App">
       <LightButton getLightProp={getLightProp} />
+      <FireAlarm />
     </div>
   );
 }
