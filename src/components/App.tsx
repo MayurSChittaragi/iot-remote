@@ -2,6 +2,7 @@ import React from 'react';
 import LightButton from './LightButton';
 import { writeThingspeak } from '../api/thingspeak';
 import FireAlarm from './FireAlarm';
+import DoorLock from './DoorLock';
 
 function App() {
   //light: "ON" | "OFF" | "AUTO" field1
@@ -17,9 +18,8 @@ function App() {
   }
 
   const getLightProp = async (term: string) => {
-    console.log(process.env.WRITE_API);
     setLightState(term);
-    console.log(term);
+    // console.log(term);
     const code = convertLightTerm(term);
     await writeThingspeak.get(`?field1=${code}`).then(
       (response) => {
@@ -36,6 +36,7 @@ function App() {
     <div className="App">
       <LightButton getLightProp={getLightProp} />
       <FireAlarm />
+      <DoorLock />
     </div>
   );
 }

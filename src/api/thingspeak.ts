@@ -8,7 +8,7 @@ const writeThingspeak = axios.create({
 });
 
 const readThingspeak = axios.create({
-	baseURL: "https://api.thingspeak.com/channels/1839256/fields/3/last.json",
+	baseURL: "https://api.thingspeak.com/channels/1839256/fields/",
 	params: {
 		api_key: "FWX0XX7TF8EKNG27",
 	},
