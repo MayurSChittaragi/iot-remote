@@ -1,20 +1,43 @@
 import React from "react";
+import { writeThingspeak } from '../api/thingspeak';
 
+
+const convertLightTerm = (s: string) => {
+    switch (s) {
+        case "ON": return 0;
+        case "OFF": return 1;
+        case "AUTO": return 2;
+        default: return 1;
+    }
+}
 
 class LightButton extends React.Component<any, any> {
+
     state: any = {
         buttonState: "",
+        lightState: ""
     }
 
 
     private handleSubmit = async (btnState: string) => {
-        await this.setState({ buttonState: btnState });
-        this.props.getLightProp(this.state.buttonState);
+        this.setState({ buttonState: btnState });
+
+        const code = convertLightTerm(this.state.buttonState);
+        await writeThingspeak.get(`?field1=${code}`).then(
+            (response) => {
+                console.log(response.data);
+            }
+        ).catch(
+            (error) => {
+                console.log(error);
+            }
+        );
     }
 
     render() {
         return (
             <div className="ui container segment">
+                <h3>Lights System!</h3>
                 <div className="ui form">
                     <div className="inline fields">
                         <label>Lights: </label>
