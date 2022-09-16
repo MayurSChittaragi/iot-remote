@@ -7,7 +7,6 @@ const convertLightTerm = (s: string) => {
         case "ON": return 0;
         case "OFF": return 1;
         case "AUTO": return 2;
-        default: return 1;
     }
 }
 
@@ -22,7 +21,7 @@ class LightButton extends React.Component<any, any> {
     private handleSubmit = async (btnState: string) => {
         this.setState({ buttonState: btnState });
 
-        const code = convertLightTerm(this.state.buttonState);
+        const code = convertLightTerm(btnState);
         await writeThingspeak.get(`?field1=${code}`).then(
             (response) => {
                 console.log(response.data);
