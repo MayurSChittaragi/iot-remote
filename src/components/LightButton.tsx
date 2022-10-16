@@ -33,8 +33,7 @@ class LightButton extends React.Component<any, any> {
 
     private handleSubmit = async (btnState: string) => {
         this.setState({ buttonState: btnState });
-        console.log("My")
-        console.log(this)
+
         const code = convertLightTerm(btnState);
         await writeThingspeak.get(`?field1=${code}`).then(
             (response) => {
