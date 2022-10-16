@@ -1,0 +1,16 @@
+body{
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    transition: 0.5s;
+}
+
+.App{
+    display: flex;
+
+}
+#cur{
+    height: 20vw;
+    width:20vw;
+    object-fit: contain;
+}

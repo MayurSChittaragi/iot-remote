@@ -1,12 +1,24 @@
 import React from "react";
 import { writeThingspeak } from '../api/thingspeak';
+import "./LightButton.css"
 
 
 const convertLightTerm = (s: string) => {
     switch (s) {
-        case "ON": return 0;
-        case "OFF": return 1;
-        case "AUTO": return 2;
+        case "ON":
+            (document.getElementById("cur") as HTMLInputElement).src = 'light_on.gif';
+            setTimeout(()=>{(document.getElementById("cur") as HTMLInputElement).src = 'light.gif';}, 1400);
+            
+            (document.getElementById("light") as HTMLInputElement).style.backgroundColor = "yellow";
+            return 0;
+        case "OFF": 
+            (document.getElementById("cur") as HTMLInputElement).src = 'light_off.gif';
+            setTimeout(()=>{(document.getElementById("cur") as HTMLInputElement).src = 'light.gif';}, 1100);
+            (document.getElementById("light") as HTMLInputElement).style.backgroundColor = "rgb(108, 231, 108)"
+            return 1;
+        case "AUTO": 
+            (document.getElementById("light") as HTMLInputElement).style.backgroundColor = "blue"
+            return 2;
         default: return 1;
     }
 }
@@ -14,15 +26,16 @@ const convertLightTerm = (s: string) => {
 class LightButton extends React.Component<any, any> {
 
     state: any = {
-        buttonState: "",
+        buttonState: "OFF",
         lightState: ""
     }
 
 
     private handleSubmit = async (btnState: string) => {
         this.setState({ buttonState: btnState });
-
-        const code = convertLightTerm(this.state.buttonState);
+        console.log("My")
+        console.log(this)
+        const code = convertLightTerm(btnState);
         await writeThingspeak.get(`?field1=${code}`).then(
             (response) => {
                 console.log(response.data);
@@ -33,50 +46,58 @@ class LightButton extends React.Component<any, any> {
             }
         );
     }
-
+    
     render() {
         return (
-            <div className="ui container segment">
-                <h3>Lights System!</h3>
+            <div className="ui container segment light" id="light">
+                <h3>Lights System   </h3>
                 <div className="ui form">
                     <div className="inline fields">
                         <label>Lights: </label>
                         <div className="field">
-                            <div className="ui radio checkbox">
-                                <input type="radio" name="frequency" onChange={
+                            <div className="ui toggle checkbox">
+                                <div id="off">OFF</div>
+                                <input type="checkbox" id="entry" className="ui toggle checkbox" name="frequency" onChange={
                                     (e) => {
-                                        if (e.target.value === "on") {
-                                            this.handleSubmit("ON");
+                                        if(this.state.buttonState !== "AUTO"){
+                                            if (this.state.buttonState === "OFF") {
+                                                this.handleSubmit("ON");
+                                            }
+                                            else{
+                                                this.handleSubmit("OFF");
+                                            }
                                         }
+                                        console.log("HERE")
+                                        console.log(this)
+
                                     }
                                 } />
                                 <label>ON</label>
                             </div>
                         </div>
-                        <div className="field">
                             <div className="ui radio checkbox">
-                                <input type="radio" name="frequency" onChange={
+                                <input type="checkbox" id="auto" className="ui radio checkbox" name="frequency" onChange={
                                     (e) => {
-                                        if (e.target.value === "on") {
-                                            this.handleSubmit("OFF");
+                                        console.log("Auto")
+                                        console.log(this)
+                                        if (this.state.buttonState === "AUTO") {
+                                            if ((document.getElementById("entry") as HTMLInputElement).checked) {
+                                                this.handleSubmit("ON");
+                                            }
+                                            else{
+                                                this.handleSubmit("OFF");
+                                            }
                                         }
-                                    }
-                                } />
-                                <label>OFF</label>
-                            </div>
-                        </div>
-                        <div className="field">
-                            <div className="ui radio checkbox">
-                                <input type="radio" name="frequency" onChange={
-                                    (e) => {
-                                        if (e.target.value === "on") {
+                                        else{
                                             this.handleSubmit("AUTO");
                                         }
+                                        console.log("Outside")
+                                        console.log(this)
+
                                     }
                                 } />
                                 <label>Auto</label>
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,118 @@
+div#newPin{
+    padding-left: 42px;
+    padding-bottom: 5px;
+}
+.ui.container.segment{
+    background-color: rgb(108, 231, 108);
+    width: 30vw;
+}
+div#oldPin{
+    padding-left: 47px;
+    padding-bottom: 5px;
+}
+div#confirmPin{
+    padding-left: 20px;
+}
+.ui.button.primary{
+    opacity: 0;
+    z-index: 1;
+    display: none;
+    transform: translateX(70px);
+}
+.ui.button.secondary{
+    margin-top: 7px;
+}
+h3{
+    padding-top: 5px;
+}
+/* #pinEnt{
+    padding-left: 77px;
+    left: -40px;
+} */
+#unlockEnt{
+    padding-left: 0px;
+    left: -40px;
+}
+#doorLock{
+    transform: translateX(77px);
+}
+
+input[type="checkbox"]{
+    display: none;
+}
+
+input[type="checkbox"] + label{
+    display: block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+input[type="checkbox"] + label:before{
+    content: '';
+    display: block;
+    width: 24px;
+    height: 15px;
+    border-radius: 15px 15px 0 0;
+    border: solid #8623cc;
+    border-width: 5px 5px 0 5px;
+    position: relative;
+    left: 30px;
+    top: -6px;
+    transform-origin: 1px 100%;
+    transform: rotateY(180deg);
+    transition: all 0.12s;
+}
+
+input[type="checkbox"] + label i{
+    display: inline-block;
+    vertical-align: top;
+    width: 24px;
+    height: 20px;
+    background: #8623cc;
+    position: relative;
+    transition: all 0.12s;
+    left: 30px;
+    bottom: 5px;
+}
+input[type="checkbox"] + label i:before{
+    content: '';
+    display: block;
+    width: 4px;
+    height: 4px;
+    background: rgba(67, 39, 39, 0.772);
+    border-radius: 50%;
+    position: absolute;
+    top: 4px;
+    left: 50%;
+    margin-left: -2px;
+}
+
+input[type="checkbox"] + label i:after{
+    content: '';
+    display: block;
+    width: 2px;
+    height: 8px;
+    background: rgba(67, 39, 39, 0.772);
+    border-radius: 0 0 50% 50%;
+    position: absolute; 
+    top: 7px;
+    left: 51%;
+    margin-left: -1px;
+}
+
+input[type="checkbox"]:checked + label i{
+    background: red;
+}
+
+input[type="checkbox"]:checked + label:before{
+    border-color: red;
+    transform: rotateY(0deg);
+}
+
+/* #unlocked{
+    transform: translateX(5px);
+} */
+
+

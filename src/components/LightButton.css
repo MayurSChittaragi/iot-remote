@@ -1,0 +1,35 @@
+.ui.container.segment.light{
+    background-color: rgb(108, 231, 108);
+    width: 30vw;
+    margin: 50px;
+}
+
+h3{
+    padding-right: 10px;
+}
+.ui.toggle.checkbox{
+    display: flex;
+    justify-content: center;
+    transform: translateX(3px);
+}
+
+.ui.toggle.checkbox div{
+    width:25px;
+    align-content: center;
+    padding-top: 2px;
+    padding-right: 3px;
+}
+.ui.toggle.checkbox label{
+    padding-left: 52px
+}
+
+#off{
+    transform: translateX(-5px);
+}
+
+
+
+#entry{
+    transform: translateX(25px);
+}
+
