@@ -6,11 +6,15 @@ body{
 }
 
 .App{
-    display: flex;
-
+    transition: 0.5s;
 }
 #cur{
     height: 20vw;
     width:20vw;
     object-fit: contain;
+}
+
+.line{
+    display: flex;
+    justify-content: center;
 }

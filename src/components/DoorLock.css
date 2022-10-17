@@ -2,10 +2,7 @@ div#newPin{
     padding-left: 42px;
     padding-bottom: 5px;
 }
-.ui.container.segment{
-    background-color: rgb(108, 231, 108);
-    width: 30vw;
-}
+
 div#oldPin{
     padding-left: 47px;
     padding-bottom: 5px;

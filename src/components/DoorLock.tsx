@@ -111,25 +111,32 @@ export default class DoorLock extends Component {
             if (e.target.oldPin.value === this.state.pin) {
                 writeThingspeak.get(`?field4=${e.target.newPin.value}`).then(
                     (response) => {
+                        setTimeout(()=>{(document.getElementById("cur") as HTMLInputElement).src = 'thumbs.gif';},2000);
+                        setTimeout(()=>{
+                            (document.getElementsByTagName("body")[0] as HTMLBodyElement).style.backgroundColor = "black";
+                            (document.getElementById("cur") as HTMLInputElement).style.opacity = '0';(document.getElementById("cur") as HTMLInputElement).style.height = '20vw';(document.getElementById("cur") as HTMLInputElement).style.width = '20vw';
+                            setTimeout(()=>{(document.getElementById("cur") as HTMLInputElement).style.opacity = '1';(document.getElementById("cur") as HTMLInputElement).src = 'light.gif';},500)
+                        }, 3500);
                         console.log(response.data);
                     }
                 ).catch(
                     (error) => {
                         console.log(error);
-                        setTimeout(()=>{(document.getElementById("cur") as HTMLInputElement).src = 'thumbs_down.gif';},2000);
+                        
                         setTimeout(()=>{
+                            alert("Server Error");
                             (document.getElementsByTagName("body")[0] as HTMLBodyElement).style.backgroundColor = "black";
-                            (document.getElementById("cur") as HTMLInputElement).style.opacity = '0';
+                            (document.getElementById("cur") as HTMLInputElement).style.opacity = '0';(document.getElementById("cur") as HTMLInputElement).style.height = '20vw';(document.getElementById("cur") as HTMLInputElement).style.width = '20vw';
                             setTimeout(()=>{(document.getElementById("cur") as HTMLInputElement).style.opacity = '1';(document.getElementById("cur") as HTMLInputElement).src = 'light.gif';},500)
                         }, 3500);
                     }
                 );
             } else {
-                alert('Wrong Old PIN');
-                setTimeout(()=>{(document.getElementById("cur") as HTMLInputElement).src = 'thumbs_down.gif';},2000);
+                
                 setTimeout(()=>{
+                    alert('Wrong Old PIN');
                     (document.getElementsByTagName("body")[0] as HTMLBodyElement).style.backgroundColor = "black";
-                    (document.getElementById("cur") as HTMLInputElement).style.opacity = '0';
+                    (document.getElementById("cur") as HTMLInputElement).style.opacity = '0';(document.getElementById("cur") as HTMLInputElement).style.height = '20vw';(document.getElementById("cur") as HTMLInputElement).style.width = '20vw';
                     setTimeout(()=>{(document.getElementById("cur") as HTMLInputElement).style.opacity = '1';(document.getElementById("cur") as HTMLInputElement).src = 'light.gif';},500)
                 }, 3500);
             }
@@ -137,19 +144,15 @@ export default class DoorLock extends Component {
             readThingspeak.get('4/last.json').then((response) => {
                 this.setState({ pin: response.data.field4 },
                     () => {
-                        setTimeout(()=>{(document.getElementById("cur") as HTMLInputElement).src = 'thumbs.gif';},2000);
-                        setTimeout(()=>{
-                            (document.getElementsByTagName("body")[0] as HTMLBodyElement).style.backgroundColor = "black";
-                            (document.getElementById("cur") as HTMLInputElement).style.opacity = '0';
-                            setTimeout(()=>{(document.getElementById("cur") as HTMLInputElement).style.opacity = '1';(document.getElementById("cur") as HTMLInputElement).src = 'light.gif';},500)
-                        }, 3500);
+                        
                     });
             });
         }else{
-            setTimeout(()=>{(document.getElementById("cur") as HTMLInputElement).src = 'thumbs_down.gif';},2000);
+            
             setTimeout(()=>{
+                alert("Confirm Pin does not match");
                 (document.getElementsByTagName("body")[0] as HTMLBodyElement).style.backgroundColor = "black";
-                (document.getElementById("cur") as HTMLInputElement).style.opacity = '0';
+                (document.getElementById("cur") as HTMLInputElement).style.opacity = '0';(document.getElementById("cur") as HTMLInputElement).style.height = '20vw';(document.getElementById("cur") as HTMLInputElement).style.width = '20vw';
                 setTimeout(()=>{(document.getElementById("cur") as HTMLInputElement).style.opacity = '1';(document.getElementById("cur") as HTMLInputElement).src = 'light.gif';},500)
             }, 3500);
         }

@@ -7,7 +7,7 @@ const convertLightTerm = (s: string) => {
     switch (s) {
         case "ON":
             (document.getElementById("cur") as HTMLInputElement).src = 'light_on.gif';
-            setTimeout(()=>{(document.getElementById("cur") as HTMLInputElement).src = 'light.gif';}, 1400);
+            setTimeout(()=>{(document.getElementById("cur") as HTMLInputElement).src = 'light.gif';}, 2000);
             
             (document.getElementById("light") as HTMLInputElement).style.backgroundColor = "yellow";
             return 0;

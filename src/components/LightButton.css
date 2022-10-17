@@ -1,7 +1,12 @@
-.ui.container.segment.light{
+.ui.container.segment{
     background-color: rgb(108, 231, 108);
-    width: 30vw;
-    margin: 50px;
+    width: 25vw;
+    height: 20vw;
+    margin: 20px;
+    border-radius: 20px;
+}
+.ui.container.segment.light{
+    left: -70px;
 }
 
 h3{

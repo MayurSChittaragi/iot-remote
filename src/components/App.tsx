@@ -7,11 +7,15 @@ import EmailList from "./EmailList";
 function App() {
   return (
     <div className="App">
-      <LightButton />
-      <img src='light.gif' id="cur"></img>
-      <FireAlarm />
-      <DoorLock />
-      <EmailList />
+      <div className='line'>
+        <img src='light.gif' id="cur"></img>
+      </div>
+      <div className='line'>
+        <LightButton />
+        <FireAlarm />
+        <DoorLock />
+        <EmailList />
+      </div>
     </div>
   );
 }
